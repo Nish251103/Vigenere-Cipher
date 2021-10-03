@@ -4,6 +4,28 @@ def new_alphabet(ch):
     new_alphabet = alph[alph.index(ch):] + alph[:alph.index(ch)]
     return new_alphabet
     
+    
+def decrypt(text, big_key):
+    res = ''
+    alph = 'abcdefghijklmnopqrstuvwxyz'
+    i = 1
+    for char in big_key:
+        new = new_alphabet(char)
+        for t in text:
+            if alph.count(t) == 1 :
+                res += alph[new.index(t)]
+                text = text[i:]
+                break
+            elif alph.count(t.lower()) == 1:
+                res += alph[new.index(t.lower())].upper()
+                text = text[i:]
+                break
+            else:
+                res += t
+                text = text[i:]
+                break
+            i += 1    
+    return res
    
 def encrypt(text, big_key):
     res = ''
